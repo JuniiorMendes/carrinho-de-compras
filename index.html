@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tela">
+        <div>
+            Quantidade: <span class="n"></span>
+            <br>
+            Saldo R$ <span class="saldo"></span>
+            <br>
+            Produto: <span class="produto"></span>
+        </div>
+        <input type="submit" class="mais" value="+">
+        <input type="submit" class="menos" value="-">
+    </div>
+    <script>
+        let n = document.querySelector('.n')
+        let mais = document.querySelector('.mais')
+        let menos = document.querySelector('.menos')
+        let saldo = document.querySelector('.saldo')
+        let produto = document.querySelector('.produto')
+        let contadora = 0
+        let valorSaldo = 1150
+        let valorProduto = 50
+
+        mais.addEventListener("click", aumentar)
+        menos.addEventListener("click", diminuir)
+
+        atualizar()
+        
+        function limite(){
+            if(contadora<0) {
+                contadora = 0
+            }
+            if(valorSaldo<0) {
+                contadora = 0
+                valorSaldo = 0
+                alert("saldo insuficiente!")
+            }
+        }
+        
+        function atualizar(){
+            limite()
+            n.innerText = contadora
+            saldo.innerHTML = valorSaldo
+            produto.innerText = valorProduto
+        }
+
+        function aumentar(){
+            contadora++
+            if(contadora>=1) {
+                valorSaldo = valorSaldo - valorProduto
+            }
+            atualizar()
+        }
+
+        function diminuir(){
+            contadora--
+            if(contadora>=0) {
+                valorSaldo = valorSaldo + valorProduto
+            }
+            atualizar()
+        }
+    </script>
+</body>
+</html>
